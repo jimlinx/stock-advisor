@@ -1,0 +1,11 @@
+[Unit]
+Description=stock.example.com: daily market brief and trade proposals (headless Claude)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/stock-advisor/stock/stock.py analyse
+# One Claude Code process at a time, on a 2 GB box shared with Nextcloud.
+MemoryMax=800M
+Nice=10
+TimeoutStartSec=3h

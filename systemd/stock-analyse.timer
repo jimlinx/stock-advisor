@@ -1,0 +1,13 @@
+[Unit]
+Description=stock.example.com: analyse shortly after the US market opens, weekdays
+
+[Timer]
+# 09:50 America/New_York: 20 minutes after the 09:30 open, past the noisiest first minutes
+# (Alex, 2026-09-30). systemd resolves the US daylight-saving calendar itself, so this
+# stays 20 minutes after the open year-round without a fixed Sydney offset that would
+# drift when the two countries' daylight-saving changeovers fall on different weeks.
+OnCalendar=Mon..Fri 09:50 America/New_York
+Persistent=false
+
+[Install]
+WantedBy=timers.target

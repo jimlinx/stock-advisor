@@ -1,0 +1,9 @@
+[Unit]
+Description=stock.example.com: score proposals every Saturday morning (Sydney), after Friday's US close
+
+[Timer]
+OnCalendar=Sat 09:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,18 @@
+[Unit]
+Description=stock.example.com: US stock advisor web app
+After=network.target docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/stock-advisor/stock/stock.py serve
+Restart=always
+RestartSec=5
+# Approving a LIVE proposal or refreshing a live account runs `claude -p` inside this unit,
+# so the cap has to fit Claude Code (~400 MB) as well as the web server. Runs as root
+# because Claude Code's login and MCP tokens live in /root/.claude.
+MemoryMax=900M
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

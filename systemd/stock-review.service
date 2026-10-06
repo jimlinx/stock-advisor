@@ -1,0 +1,11 @@
+[Unit]
+Description=stock.example.com: weekly proposal scores, and the monthly Opus review on the first Saturday
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/stock-advisor/stock/stock.py weekly
+# One Claude Code process at a time, on a 2 GB box shared with Nextcloud.
+MemoryMax=800M
+Nice=10
+TimeoutStartSec=1h
